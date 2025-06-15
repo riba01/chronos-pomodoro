@@ -26,9 +26,6 @@ export default tseslint.config(
       // 🔥 Style rules
       semi: ['error', 'always'], // Obrigatório ponto e vírgula
       quotes: ['warm', 'single'], // Aspas simples
-      'comma-dangle': ['error', 'always-multiline'], // Vírgula no final de objetos/arrays multilinha
-      'object-curly-spacing': ['error', 'always'], // Espaço dentro de objetos { exemplo: true }
-      'arrow-parens': ['error', 'as-needed'], // Remove parênteses em arrow functions com 1 parâmetro
     },
   },
 );
