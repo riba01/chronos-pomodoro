@@ -25,7 +25,7 @@ export default tseslint.config(
       ],
       // 🔥 Style rules
       semi: ['error', 'always'], // Obrigatório ponto e vírgula
-      quotes: ['warm', 'single'], // Aspas simples
+      quotes: ['warn', 'single'], // Aspas simples
     },
   },
 );

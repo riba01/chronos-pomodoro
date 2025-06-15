@@ -1,12 +1,13 @@
+import './styles/theme.css';
+import './styles/global.css';
+import { Heading } from './components/Heading';
+
 export function App() {
+    const texto: string = 'Olá Mundo!';
     return (
         <>
-            <div>
-                <h1>Teste</h1>
-            </div>
-            <div>
-                <h1>Olá MundoApp</h1>
-            </div>
+
+            <Heading>{texto}</Heading>
         </>
-    )
+    );
 };
