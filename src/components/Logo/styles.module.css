@@ -1,0 +1,30 @@
+.logo {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    margin: 6rem 0;
+    gap: 2rem;
+    color: var(--primary);
+}
+
+.logoLink {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    color: var(--primary);
+    font-size: 3rem;
+    font-weight: bold;
+    transition: all 200ms ease-in-out;
+}
+
+.logoLink:hover {
+    filter: brightness(50%);
+}
+
+.logo a svg {
+    width: 6.4rem;
+    height: 6.4rem;
+}
