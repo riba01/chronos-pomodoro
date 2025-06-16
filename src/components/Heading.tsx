@@ -1,9 +1,14 @@
+import { Timer } from 'lucide-react';
 import styles from './Heading.module.css';
 
-type HeadingProps = {
-    children: string;
-};
 
-export function Heading({ children }: HeadingProps) {
-    return <h1 className={styles.heading}>{children}</h1>;
+export function Heading() {
+
+    return (
+        <div className={styles.heading}>
+            <Timer />
+            <h1>Chronos</h1>
+        </div>
+    );
+
 }
