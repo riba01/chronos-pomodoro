@@ -1,0 +1,7 @@
+.countDown {
+    text-align: center;
+    font-size: clamp(8rem, 25vw, 16rem);
+    font-weight: bold;
+    gap: 2rem;
+    color: var(--primary);
+}
