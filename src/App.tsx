@@ -12,6 +12,21 @@ import { Footer } from './components/Footer';
 
 
 export function App() {
+    /* Lazy initialization */
+    /* const [numero, setNumero] = useState(()=>{
+        console.log('Realiza alguma operação e depois retorna o valor');
+        return 0;
+    }); 
+     function handleClick() {
+        setNumero(numero => numero + 1);
+    }
+    */
+    /* const [numero, setNumero] = useState(0);
+
+    function handleClick() {
+        setNumero(numero => numero + 1);
+    } */
+
     return (
         <>
             <Container>
