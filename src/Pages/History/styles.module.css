@@ -1,0 +1,47 @@
+h1 {
+  color: var(--primary);
+  font-size: 3rem;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem;
+  border-radius: 0.8rem;
+  width: 2rem;
+  margin: 2rem 0;
+}
+
+.button svg {
+  width: 2rem;
+  height: 2rem;
+  color: var(--gray-900);
+}
+
+.responsiveTable {
+  overflow-x: auto;
+  border-radius: 0.8rem;
+}
+
+.responsiveTable table {
+  width: 100%;
+  min-width: 64rem;
+  font-size: 1.4rem;
+  border-collapse: collapse;
+}
+
+.responsiveTable table th {
+  background-color: var(--gray-600);
+}
+
+.responsiveTable table td {
+  background-color: var(--gray-800);
+}
+
+.responsiveTable th,
+.responsiveTable td {
+  border-bottom: 0.2rem solid var(--gray-700);
+  text-align: left;
+  padding: 1.4rem;
+}

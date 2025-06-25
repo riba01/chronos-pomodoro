@@ -1,15 +1,6 @@
 .heading {
     display: flex;
-    flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
-    margin: 6rem 0;
     gap: 2rem;
-    color: var(--primary);
-}
-
-.heading svg {
-    color: var(--primary);
-    width: 60px;
-    height: auto;
 }
