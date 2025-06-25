@@ -46,11 +46,11 @@ export function TaskContextProvider({ children }: TaskContentProviderProps) {
 
   useEffect(() => {
     /* console.log(state); */
-
     if (!state.activeTask) {
       console.log('Worker terminado');
       worker.terminate();
     }
+    document.title = `Chronos Pomodoro - ${state.formatedSecondsRemaning}`;
     worker.postMessage(state);
   }, [state, worker]);
   return (

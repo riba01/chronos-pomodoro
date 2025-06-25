@@ -17,6 +17,8 @@ export function MainForm() {
 
   const taskNameInput = useRef<HTMLInputElement>(null);
 
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || '';
+
   /* ciclos */
   const nextCycle = getNextCycles(state.currentCycle);
 
@@ -71,6 +73,7 @@ export function MainForm() {
             placeholder='Digite a tarefa'
             ref={taskNameInput}
             disabled={!!state.activeTask}
+            defaultValue={lastTaskName}
           />
         </div>
         <div className='formRow'>
