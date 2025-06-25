@@ -5,10 +5,11 @@ import { DefaultInput } from '../DefaultInput';
 import { useRef } from 'react';
 import type { TaskModel } from '../../models/TaskModels';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
-import { getNextCycles } from '../utils/getNextCycles';
-import { getNextCycleType } from '../utils/getNextCycleType';
+import { getNextCycles } from '../../utils/getNextCycles';
+import { getNextCycleType } from '../../utils/getNextCycleType';
 import { TaskActionsTypes } from '../../contexts/TaskContext/taskActions';
 import { Tips } from '../Tips';
+import { showMessage } from '../../adapters/showMessage';
 
 
 export function MainForm() {
@@ -25,13 +26,15 @@ export function MainForm() {
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    //apaga as msg da tela
+    showMessage.dismiss();
     /* console.log('Deu tudo certo'); */
     if (taskNameInput.current === null) return;
 
     const taskName = taskNameInput.current.value.trim();
 
     if (!taskName) {
-      alert('Digite a tarefa!');
+      showMessage.info('Digite a tarefa!');
       return;
     }
 
@@ -46,11 +49,14 @@ export function MainForm() {
     };
 
     dispatch({ type: TaskActionsTypes.START_TASK, payload: newTask });
+    showMessage.success('Tarefa iniciada');
   }
 
   function handleInterruptTask(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.preventDefault();
+    showMessage.dismiss();
     dispatch({ type: TaskActionsTypes.INTERRUPT_TASK });
+    showMessage.error('Tarefa interrompida');
   }
 
   return (

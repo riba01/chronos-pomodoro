@@ -1,8 +1,10 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import { initialTaskState } from './initialTaskState';
 import { TaskContext } from './TaskContext';
 import { TaskReducer } from './taskReducer';
-import { TimerWorkerManager } from '../../workers/timerWorkerManager';
+import { TaskActionsTypes } from './taskActions';
+import { TimerWorkerManager } from '../../workers/TimerWorkerManager';
+import { loadBeep } from '../../utils/loadBeep';
 
 type TaskContentProviderProps = {
   children: React.ReactNode;
@@ -11,18 +13,40 @@ type TaskContentProviderProps = {
 export function TaskContextProvider({ children }: TaskContentProviderProps) {
   const [state, dispatch] = useReducer(TaskReducer, initialTaskState);
 
+  const playBeepRef = useRef<ReturnType<typeof loadBeep> | null>(null);
+  useEffect(() => {
+    if (state.activeTask && playBeepRef.current === null) {
+      playBeepRef.current = loadBeep();
+    } else {
+      playBeepRef.current = null;
+    }
+  }, [state.activeTask]);
+
   const worker = TimerWorkerManager.getInstance();
 
   worker.onmessage(e => {
     const countDownSeconds = e.data;
-    console.log(countDownSeconds);
+    /* console.log(countDownSeconds); */
     if (countDownSeconds <= 0) {
-      console.log('Terminou');
+      if (playBeepRef.current) {
+        playBeepRef.current();
+        playBeepRef.current = null;
+      }
+      dispatch({
+        type: TaskActionsTypes.COMPLETE_TASK,
+      });
       worker.terminate();
+    } else {
+      dispatch({
+        type: TaskActionsTypes.COUNT_DOWN,
+        payload: { secondsRemaining: countDownSeconds }
+      });
     }
   });
 
   useEffect(() => {
+    /* console.log(state); */
+
     if (!state.activeTask) {
       console.log('Worker terminado');
       worker.terminate();

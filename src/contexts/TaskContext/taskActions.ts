@@ -11,6 +11,8 @@ export const TaskActionsTypes = {
   START_TASK: 'START_TASK',
   INTERRUPT_TASK: 'INTERRUPT_TASK',
   RESET_STATE: 'RESET_STATE',
+  COUNT_DOWN: 'COUNT_DOWN',
+  COMPLETE_TASK: 'COMPLETE_TASK',
 } as const;
 
 // ✅ Extrai os valores possíveis para o tipo
@@ -21,6 +23,13 @@ export type TaskActionModel =
   | {
       type: typeof TaskActionsTypes.START_TASK;
       payload: TaskModel;
+    }
+  | {
+      type: typeof TaskActionsTypes.COUNT_DOWN;
+      payload: { secondsRemaining: number };
+    }
+  | {
+      type: typeof TaskActionsTypes.COMPLETE_TASK;
     }
   | {
       type: typeof TaskActionsTypes.INTERRUPT_TASK;
