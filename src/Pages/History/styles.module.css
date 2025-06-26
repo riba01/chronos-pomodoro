@@ -45,3 +45,12 @@ h1 {
   text-align: left;
   padding: 1.4rem;
 }
+
+.thSort {
+  transition: all 0.1s ease-in-out;
+}
+
+.thSort:hover {
+  cursor: pointer;
+  filter: brightness(80%);
+}
