@@ -54,3 +54,7 @@ h1 {
   cursor: pointer;
   filter: brightness(80%);
 }
+
+.noTask {
+  text-align: center;
+}
