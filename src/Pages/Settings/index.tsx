@@ -3,14 +3,15 @@ import { Container } from '../../components/Container';
 import { DefaultButton } from '../../components/DefaultButton';
 import { DefaultInput } from '../../components/DefaultInput';
 import { MainTemplate } from '../../templates/MainTemplate';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { showMessage } from '../../adapters/showMessage';
+import { TaskActionsTypes } from '../../contexts/TaskContext/taskActions';
 
 
 export function Settings() {
   //pegar o valor padrão do contexto
-  const { state } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
 
   const workTimeInputRef = useRef<HTMLInputElement>(null);
   const shortBreakTimeInputRef = useRef<HTMLInputElement>(null);
@@ -21,15 +22,15 @@ export function Settings() {
     showMessage.dismiss();
     /* console.log('ENVIADO', Date.now()); */
     const workTime = Number(workTimeInputRef.current?.value);
-    const shorBreakTime = Number(shortBreakTimeInputRef.current?.value);
+    const shortBreakTime = Number(shortBreakTimeInputRef.current?.value);
     const longBreakTime = Number(longBreakTimeInputRef.current?.value);
 
-    /*  console.log(workTime, shorBreakTime, longBreakTime); */
+    /*  console.log(workTime, shortBreakTime, longBreakTime); */
     if (isNaN(workTime) || !Number.isInteger(workTime)) {
       showMessage.error('Por favor, use apenas números inteiros para Foco');
       return;
     }
-    if (isNaN(shorBreakTime) || !Number.isInteger(shorBreakTime)) {
+    if (isNaN(shortBreakTime) || !Number.isInteger(shortBreakTime)) {
       showMessage.error('Por favor, use apenas números inteiros para descanso curto');
       return;
     }
@@ -42,7 +43,7 @@ export function Settings() {
       showMessage.error('Digite um número entre 1 e 90 para descanso foco');
       return;
     }
-    if (shorBreakTime < 1 || shorBreakTime > 20) {
+    if (shortBreakTime < 1 || shortBreakTime > 20) {
       showMessage.error('Digite um número entre 1 e 20 para descanso curto');
       return;
     }
@@ -51,7 +52,22 @@ export function Settings() {
       return;
     }
 
+    /* Salvar */
+    dispatch({
+      type: TaskActionsTypes.CHANCE_SETTINGS, payload: {
+        workTime,
+        shortBreakTime,
+        longBreakTime
+      }
+    });
+
   }
+
+  useEffect(() => {
+    document.title = 'Settings - Chronos Pomodoro';
+  }, []);
+
+
 
   return (
     <MainTemplate>

@@ -57,6 +57,9 @@ export function TaskReducer(
     case TaskActionsTypes.RESET_STATE: {
       return { ...initialTaskState };
     }
+    case TaskActionsTypes.CHANCE_SETTINGS: {
+      return { ...state, config: { ...action.payload } };
+    }
     case TaskActionsTypes.COUNT_DOWN: {
       return {
         ...state,

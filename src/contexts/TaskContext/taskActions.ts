@@ -5,6 +5,7 @@
 // type <- o tipo da ação, geralmente uma string (pode ser enum, constante, etc)
 
 import type { TaskModel } from '../../models/TaskModels';
+import type { TaskStateModel } from '../../models/TaskStateModel';
 
 // ✅ Definição dos tipos de ações como objeto constante
 export const TaskActionsTypes = {
@@ -13,6 +14,7 @@ export const TaskActionsTypes = {
   RESET_STATE: 'RESET_STATE',
   COUNT_DOWN: 'COUNT_DOWN',
   COMPLETE_TASK: 'COMPLETE_TASK',
+  CHANCE_SETTINGS: 'CHANCE_SETTINGS',
 } as const;
 
 // ✅ Extrai os valores possíveis para o tipo
@@ -27,6 +29,10 @@ export type TaskActionModel =
   | {
       type: typeof TaskActionsTypes.COUNT_DOWN;
       payload: { secondsRemaining: number };
+    }
+  | {
+      type: typeof TaskActionsTypes.CHANCE_SETTINGS;
+      payload: TaskStateModel['config'];
     }
   | {
       type: typeof TaskActionsTypes.COMPLETE_TASK;
